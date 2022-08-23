@@ -1,6 +1,6 @@
 import { ThemeProvider } from "@mui/material";
 import "./App.css";
-import ItemListContainer from "./components/itemListContainer";
+import ItemListContainer from "./components/ItemListContainer";
 import NavBar from "./components/NavBar";
 import theme from './MuiTheme';
 
