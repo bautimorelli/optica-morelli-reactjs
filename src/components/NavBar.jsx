@@ -9,8 +9,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import Badge from '@mui/material/Badge';
+import CartWidget from "./CartWidget";
 const pages = ["Lentes de Sol", "Prescripciones", "Lentes de Contacto"];
 
 const ResponsiveAppBar = () => {
@@ -24,35 +23,27 @@ const ResponsiveAppBar = () => {
 		setAnchorElNav(null);
 	};
 
-	const styles = {
-		appbar: {
-			alignItems: "center",
-		},
-	};
-
 	return (
 		<AppBar position="static">
 			<Container maxWidth="xl">
-				<Toolbar disableGutters>
+				<Toolbar
+					disableGutters
+					className="justify--content--center">
+					{/* Not collapsed Logo */}
 					<Box
 						component="img"
 						sx={{
 							height: 70,
-							display: { xs: 'none', md: 'flex' },
-							mr: 1 
+							display: { xs: "none", md: "flex" },
 						}}
 						alt="Optica Morelli logo"
 						src="images/logoOpticaTransparent.png"
 					/>
 
-					<Box
-						sx={{
-							flexGrow: 1,
-							display: { xs: "flex", md: "none" },
-						}}>
+					{/* Collapsed Menu */}
+					<Box sx={{ display: { xs: "flex", md: "none" } }}>
 						<IconButton
 							size="large"
-							aria-label="account of current user"
 							aria-controls="menu-appbar"
 							aria-haspopup="true"
 							onClick={handleOpenNavMenu}
@@ -87,21 +78,21 @@ const ResponsiveAppBar = () => {
 							))}
 						</Menu>
 					</Box>
+
+					{/* Collapsed Logo */}
 					<Box
 						component="img"
 						sx={{
 							height: 70,
-							display: { xs: 'flex', md: 'none' },
-							mr: 1 
+							display: { xs: "flex", md: "none" },
+							mr: 1,
 						}}
 						alt="Optica Morelli logo"
 						src="images/logoOpticaTransparent.png"
 					/>
-					<Box
-						sx={{
-							flexGrow: 1,
-							display: { xs: "none", md: "flex" },
-						}}>
+
+					{/* Not Collapsed Menu */}
+					<Box sx={{ display: { xs: "none", md: "flex" } }}>
 						{pages.map((page) => (
 							<Button
 								key={page}
@@ -116,19 +107,7 @@ const ResponsiveAppBar = () => {
 						))}
 					</Box>
 
-					<MenuItem>
-							<IconButton
-								size="large"
-								aria-label="2 items en el carrito"
-								color="inherit">
-								<Badge
-									badgeContent={2}
-									color="error">
-									<ShoppingCartIcon />
-								</Badge>
-							</IconButton>
-							<p>Carrito</p>
-						</MenuItem>
+					<CartWidget />
 				</Toolbar>
 			</Container>
 		</AppBar>
