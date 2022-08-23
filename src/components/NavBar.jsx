@@ -99,7 +99,7 @@ const ResponsiveAppBar = () => {
 								onClick={handleCloseNavMenu}
 								sx={{
 									my: 2,
-									color: "white",
+									color: "black",
 									display: "block",
 								}}>
 								{page}
