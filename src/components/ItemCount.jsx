@@ -4,20 +4,20 @@ import ButtonGroup from "@mui/material/ButtonGroup";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 
-function ItemCount({ stock, initial, onAdd }) {
+const ItemCount = ({ stock, initial, onAdd }) => {
 	const [count, setCount] = useState(initial);
 
-    const updateCount = (number) => {
-        if ((count + number) >= 0 && (count + number) <= stock){
-            setCount(count + number)
-        }
-    }
+	const updateCount = (number) => {
+		if (count + number >= 0 && count + number <= stock) {
+			setCount(count + number);
+		}
+	};
 
-    const addToCart = () => {
-        if (stock > 0 && count > 0) {
-            onAdd(count)
-        }
-    }
+	const addToCart = () => {
+		if (stock > 0 && count > 0) {
+			onAdd(count);
+		}
+	};
 
 	return (
 		<Box sx={{ display: "inline-flex", flexDirection: "column", mx: 1 }}>
@@ -29,7 +29,10 @@ function ItemCount({ stock, initial, onAdd }) {
 					borderRadius: "16px",
 					mx: 4,
 				}}>
-				<Typography variant="body1" mx={2} my={1}>
+				<Typography
+					variant="body1"
+					mx={2}
+					my={1}>
 					{count}
 				</Typography>
 				<Button onClick={() => updateCount(-1)}>-</Button>
@@ -38,11 +41,11 @@ function ItemCount({ stock, initial, onAdd }) {
 			<Button
 				variant="outlined"
 				sx={{ my: 2 }}
-                onClick={addToCart}>
+				onClick={addToCart}>
 				Agregar al Carrito
 			</Button>
 		</Box>
 	);
-}
+};
 
 export default ItemCount;
