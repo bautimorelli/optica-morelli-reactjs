@@ -15,6 +15,7 @@ const ItemList = ({ items }) => {
 				display: "flex",
 				flexDirection: "row",
 				flexWrap: "wrap",
+				justifyContent: "space-evenly",
 				mx: 3,
 			}}>
 			{items.map((item) => (

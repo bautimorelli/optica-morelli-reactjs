@@ -20,7 +20,7 @@ const ItemCount = ({ stock, initial, onAdd }) => {
 	};
 
 	return (
-		<Box sx={{ display: "inline-flex", flexDirection: "column", mx: 1 }}>
+		<Box sx={{ display: "inline-flex", flexDirection: "column", mx: 1, my: 3 }}>
 			<ButtonGroup
 				variant="text"
 				sx={{
@@ -28,6 +28,8 @@ const ItemCount = ({ stock, initial, onAdd }) => {
 					borderColor: "primary.main",
 					borderRadius: "16px",
 					mx: 4,
+					justifyContent: "flex-end",
+					maxWidth: 130
 				}}>
 				<Typography
 					variant="body1"
@@ -40,7 +42,7 @@ const ItemCount = ({ stock, initial, onAdd }) => {
 			</ButtonGroup>
 			<Button
 				variant="outlined"
-				sx={{ my: 2 }}
+				sx={{ my: 2, maxWidth:200 }}
 				onClick={addToCart}>
 				Agregar al Carrito
 			</Button>

@@ -10,7 +10,7 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import CartWidget from "./CartWidget";
-const pages = ["Lentes de Sol", "Prescripciones", "Lentes de Contacto"];
+const pages = ["Lentes de Sol", "Lentes Recetados", "Contactologia"];
 
 const ResponsiveAppBar = () => {
 	const [anchorElNav, setAnchorElNav] = React.useState(null);

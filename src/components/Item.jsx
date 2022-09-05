@@ -23,18 +23,20 @@ const Item = ({ item }) => {
 						gutterBottom
 						variant="h5"
 						component="div">
-						{item.title} - {item?.brand}
+						{item.title} - {item.brand}
 					</Typography>
 					<Typography
 						variant="body2"
 						color="text.secondary">
-						${item.price}
+						$ {item.price}
 					</Typography>
 				</CardContent>
 				<CardActions sx={{ justifyContent: "center" }}>
 					<Button
 						size="small"
-						variant="outlined">
+						variant="outlined"
+						//onClick={a}
+						>
 						Ver producto
 					</Button>
 				</CardActions>
