@@ -1,14 +1,20 @@
 import React from "react";
-import Box from "@mui/material/Box";
+import { Box, LinearProgress } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import ItemCount from "./ItemCount";
 
 const ItemDetail = ({ item }) => {
 	const onAdd = (number) => {console.log("Se agregaron " + number + " items al carrito")}
     
+    console.log(item)
     if (!item) {
-		return <div>ALGO</div>;
+		return (
+        <Box sx={{ width: "100%" }}>
+        <LinearProgress />
+        </Box>
+        );
 	}
+
 	return (
 		<Box sx={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent:"center", my: 6 }}>
             {console.log(item)}

@@ -6,8 +6,11 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Grow from "@mui/material/Grow";
+import { useNavigate} from "react-router-dom"
 
 const Item = ({ item }) => {
+	const navigate = useNavigate()
+
 	return (
 		<Grow in={true}>
 			<Card sx={{ width: 290, m: 5, boxShadow: 2 }}>
@@ -35,7 +38,7 @@ const Item = ({ item }) => {
 					<Button
 						size="small"
 						variant="outlined"
-						//onClick={a}
+						onClick={()=>navigate(`item/${item.id}`)}
 						>
 						Ver producto
 					</Button>

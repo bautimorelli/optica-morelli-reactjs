@@ -10,7 +10,13 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import CartWidget from "./CartWidget";
-const pages = ["Lentes de Sol", "Lentes Recetados", "Contactologia"];
+import { NavLink } from "react-router-dom";
+
+const pages = [
+	{ link: "/category/lentesDeSol", name: "Lentes De Sol" },
+	{ link: "/category/lentesRecetados", name: "Lentes Recetados" },
+	{ link: "/category/contactologia", name: "Contactologia" },
+];
 
 const ResponsiveAppBar = () => {
 	const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -30,15 +36,19 @@ const ResponsiveAppBar = () => {
 					disableGutters
 					className="justify--content--center">
 					{/* Not collapsed Logo */}
-					<Box
-						component="img"
-						sx={{
-							height: 70,
-							display: { xs: "none", md: "flex" },
-						}}
-						alt="Optica Morelli logo"
-						src="images/logoOpticaTransparent.png"
-					/>
+					<NavLink
+						to="/"
+						style={{ textDecoration: "none" }}>
+						<Box
+							component="img"
+							sx={{
+								height: 70,
+								display: { xs: "none", md: "flex" },
+							}}
+							alt="Optica Morelli logo"
+							src="/images/logoOpticaTransparent.png"
+						/>
+					</NavLink>
 
 					{/* Collapsed Menu */}
 					<Box sx={{ display: { xs: "flex", md: "none" } }}>
@@ -69,41 +79,61 @@ const ResponsiveAppBar = () => {
 							}}>
 							{pages.map((page) => (
 								<MenuItem
-									key={page}
+									key={page.name}
 									onClick={handleCloseNavMenu}>
-									<Typography textAlign="center">
-										{page}
-									</Typography>
+									<NavLink
+										to={page.link}
+										style={{
+											textDecoration: "none",
+											color: "black",
+										}}>
+										<Typography textAlign="center">
+											{page.name}
+										</Typography>
+									</NavLink>
 								</MenuItem>
 							))}
 						</Menu>
 					</Box>
 
 					{/* Collapsed Logo */}
-					<Box
-						component="img"
-						sx={{
-							height: 70,
-							display: { xs: "flex", md: "none" },
-							mr: 1,
-						}}
-						alt="Optica Morelli logo"
-						src="images/logoOpticaTransparent.png"
-					/>
+					<NavLink
+						to="/"
+						style={{ textDecoration: "none" }}>
+						<Box
+							component="img"
+							sx={{
+								height: 70,
+								display: { xs: "flex", md: "none" },
+								mr: 1,
+							}}
+							alt="Optica Morelli logo"
+							src="/images/logoOpticaTransparent.png"
+						/>
+					</NavLink>
 
 					{/* Not Collapsed Menu */}
 					<Box sx={{ display: { xs: "none", md: "flex" } }}>
 						{pages.map((page) => (
-							<Button
-								key={page}
-								onClick={handleCloseNavMenu}
-								sx={{
-									my: 2,
+							<NavLink
+								to={page.link}
+								key={page.name}
+								style={{
+									textDecoration: "none",
 									color: "black",
-									display: "block",
 								}}>
-								{page}
-							</Button>
+								<Button
+									key={page.name}
+									onClick={handleCloseNavMenu}
+									sx={{
+										my: 2,
+										mx: 1,
+										color: "black",
+										display: "block",
+									}}>
+									{page.name}
+								</Button>
+							</NavLink>
 						))}
 					</Box>
 
