@@ -5,7 +5,6 @@ import ItemListContainer from "./components/ItemListContainer";
 import NavBar from "./components/NavBar";
 import theme from "./MuiTheme";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Test from "./components/Test";
 
 function App() {
 	return (
