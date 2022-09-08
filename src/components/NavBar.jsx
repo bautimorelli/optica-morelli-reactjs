@@ -8,7 +8,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import * as React from "react";
+import { React, useState } from "react";
 import { NavLink } from "react-router-dom";
 import CartWidget from "./CartWidget";
 
@@ -19,7 +19,7 @@ const pages = [
 ];
 
 const ResponsiveAppBar = () => {
-	const [anchorElNav, setAnchorElNav] = React.useState(null);
+	const [anchorElNav, setAnchorElNav] = useState(null);
 
 	const handleOpenNavMenu = (event) => {
 		setAnchorElNav(event.currentTarget);
