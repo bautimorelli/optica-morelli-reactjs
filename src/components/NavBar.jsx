@@ -36,19 +36,24 @@ const ResponsiveAppBar = () => {
 					disableGutters
 					className="justify--content--center">
 					{/* Not collapsed Logo */}
-					<NavLink
-						to="/"
-						style={{ textDecoration: "none" }}>
-						<Box
-							component="img"
-							sx={{
-								height: 70,
-								display: { xs: "none", md: "flex" },
-							}}
-							alt="Optica Morelli logo"
-							src="/images/logoOpticaTransparent.png"
-						/>
-					</NavLink>
+					<Box
+						sx={{
+							display: { xs: "none", md: "flex" },
+						}}>
+						<NavLink
+							to="/"
+							style={{ textDecoration: "none" }}>
+							<Box
+								component="img"
+								sx={{
+									height: 70,
+									display: { xs: "none", md: "flex" },
+								}}
+								alt="Optica Morelli logo"
+								src="/images/logoOpticaTransparent.png"
+							/>
+						</NavLink>
+					</Box>
 
 					{/* Collapsed Menu */}
 					<Box sx={{ display: { xs: "flex", md: "none" } }}>
@@ -97,20 +102,26 @@ const ResponsiveAppBar = () => {
 					</Box>
 
 					{/* Collapsed Logo */}
-					<NavLink
-						to="/"
-						style={{ textDecoration: "none" }}>
-						<Box
-							component="img"
-							sx={{
-								height: 70,
-								display: { xs: "flex", md: "none" },
-								mr: 1,
-							}}
-							alt="Optica Morelli logo"
-							src="/images/logoOpticaTransparent.png"
-						/>
-					</NavLink>
+					<Box
+						sx={{
+							display: { xs: "flex", md: "none" },
+						}}
+					>
+						<NavLink
+							to="/"
+							style={{ textDecoration: "none" }}>
+							<Box
+								component="img"
+								sx={{
+									height: 70,
+									display: { xs: "flex", md: "none" },
+									mr: 1,
+								}}
+								alt="Optica Morelli logo"
+								src="/images/logoOpticaTransparent.png"
+							/>
+						</NavLink>
+					</Box>
 
 					{/* Not Collapsed Menu */}
 					<Box sx={{ display: { xs: "none", md: "flex" } }}>

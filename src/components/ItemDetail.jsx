@@ -17,7 +17,6 @@ const ItemDetail = ({ item }) => {
 
 	return (
 		<Box sx={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent:"center", my: 6 }}>
-            {console.log(item)}
 			<Box>
 				<Box
 					component="img"
@@ -39,19 +38,19 @@ const ItemDetail = ({ item }) => {
                     sx={{mb: 2}}>
 					{item.brand}
 				</Typography>
-                <Typography
-					variant="body2"
-					color="text.secondary"
-                    sx={{mb: 2}}>
-					{item.category}
-				</Typography>
 				<Typography
 					variant="body"
 					color="text.secondary"
                     sx={{mb: 2}}>
 					$ {item.price}
 				</Typography>
-                <ItemCount stock={10} initial={1} onAdd={onAdd}/>
+				<Typography
+					variant="body2"
+					color="text.secondary"
+                    sx={{mb: 2}}>
+					Stock: {item.stock}
+				</Typography>
+                <ItemCount stock={item.stock} initial={1} onAdd={onAdd}/>
 			</Box>
 		</Box>
 	);
