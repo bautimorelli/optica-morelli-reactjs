@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
+import React, { useState } from "react";
 
 const ItemCount = ({ stock, initial, onAdd }) => {
 	const [count, setCount] = useState(initial);

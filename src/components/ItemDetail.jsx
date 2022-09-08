@@ -1,6 +1,6 @@
-import React from "react";
 import { Box, LinearProgress } from "@mui/material";
 import Typography from "@mui/material/Typography";
+import React from "react";
 import ItemCount from "./ItemCount";
 
 const ItemDetail = ({ item }) => {
