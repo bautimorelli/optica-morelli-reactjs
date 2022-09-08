@@ -10,8 +10,24 @@ const itemArray = [
     {id: 108, title: "Renu Fresh 60ML", category:"contactologia", brand:"Renu", price:"510", pictureURL:"/images/renu-fresh.jpeg", pictureAlt:"Renu Fresh 60ML"}
 ]
 
-export const data = new Promise((res) => {
-    setTimeout(() => {
-        res(itemArray)
-    }, 2000);
-})
+export function fetchCategoria(id) {
+    return new Promise((res) => {
+        setTimeout(() => {
+            let result = itemArray.filter((item) => item.category === id)
+            console.log(result)
+            if (result.length === 0) { // Si no encuentra la categoria devuelve todos los items
+                result = itemArray
+            }
+
+            res(result)
+        }, 2000);
+    })
+}   
+
+export function fetchItem(id) {
+    return new Promise((res) => {
+        setTimeout(() => {
+            res(itemArray.find((item) => item.id === parseInt(id)))
+        }, 2000);
+    })
+}

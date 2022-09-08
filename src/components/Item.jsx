@@ -45,7 +45,7 @@ const Item = ({ item }) => {
 				</CardActions>
 			</Card>
 		</Grow>
-	);
-};
+	)
+}
 
-export default Item;
+export default Item

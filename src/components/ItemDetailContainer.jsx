@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { data } from "../mocks/mockData";
+import { fetchItem } from "../mocks/mockData";
 import ItemDetail from "./ItemDetail";
 import { useParams } from "react-router-dom";
 
@@ -8,10 +8,13 @@ const ItemDetailContainer = () => {
 	const { id } = useParams();
 
 	useEffect(() => {
-		data.then((res) => {
-			console.log(res);
-			setItemDetail(res.find((item) => item.id === parseInt(id)));
-		});
+		fetchItem(id)
+			.then((res) => {
+				setItemDetail(res);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 	}, [id]);
 
 	return <ItemDetail item={itemDetail} />;

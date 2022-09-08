@@ -13,5 +13,6 @@ const CartWidget = () => {
         </Badge>
     </IconButton>
     )
-};
-export default CartWidget;
+}
+
+export default CartWidget

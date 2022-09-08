@@ -9,15 +9,15 @@ const ItemCount = ({ stock, initial, onAdd }) => {
 
 	const updateCount = (number) => {
 		if (count + number >= 0 && count + number <= stock) {
-			setCount(count + number);
+			setCount(count + number)
 		}
-	};
+	}
 
 	const addToCart = () => {
 		if (stock > 0 && count > 0) {
-			onAdd(count);
+			onAdd(count)
 		}
-	};
+	}
 
 	return (
 		<Box sx={{ display: "inline-flex", flexDirection: "column", mx: 1, my: 3 }}>

@@ -4,15 +4,15 @@ import Typography from "@mui/material/Typography";
 import ItemCount from "./ItemCount";
 
 const ItemDetail = ({ item }) => {
-	const onAdd = (number) => {console.log("Se agregaron " + number + " items al carrito")}
+	const onAdd = (number) => { console.log("Se agregaron " + number + " items al carrito") };
     
-    console.log(item)
+    console.log(item);
     if (!item) {
 		return (
-        <Box sx={{ width: "100%" }}>
-        <LinearProgress />
-        </Box>
-        );
+			<Box sx={{ width: "100%" }}>
+			<LinearProgress />
+			</Box>
+		);
 	}
 
 	return (
