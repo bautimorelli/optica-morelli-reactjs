@@ -8,6 +8,7 @@ const ItemListContainer = () => {
     const {categoryId} = useParams();
     
     useEffect(() => {
+        setItems([])
         fetchCategoria(categoryId)
             .then((res)=> {
                 setItems(res)
