@@ -2,10 +2,8 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import Typography from "@mui/material/Typography";
-import React, { useState } from "react";
 
-const ItemCount = ({ stock, initial, onAdd }) => {
-	const [count, setCount] = useState(initial);
+const ItemCount = ({ stock, onAdd, count, setCount}) => {
 
 	const updateCount = (number) => {
 		if (count + number > 0 && count + number <= stock) {
