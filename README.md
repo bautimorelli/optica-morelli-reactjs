@@ -15,5 +15,5 @@ En mi caso, decidi hacer una sobre un negocio de Optica de mi familia, en el cua
 
 ## Demo
 
-Insert gif or link to demo
+![](https://github.com/bautimorelli/optica-morelli-reactjs/blob/main/public/images/demo.gif)
 
