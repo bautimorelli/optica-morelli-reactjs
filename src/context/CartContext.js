@@ -6,17 +6,18 @@ export const CartProvider = ({children}) => {
     const [cart, setCart] = useState([])    
 
     //.....Functions
-    const addItem = (product) => {
-        if (isInCart(product.id)) {
-            let item = cart.find((item) => item.id === product.id)
-            let quantity = item.quantity + product.quantity
-            if (quantity > item.stock) {
-                quantity = item.stock
+    const addItem = (product, quantity) => {
+        const itemInCart = cart.find((item) => item.id === product.id)
+        if (itemInCart) {
+            let finalQuantity = itemInCart.quantity + quantity
+            if (finalQuantity > itemInCart.stock) {
+                finalQuantity = itemInCart.stock
             }
-            item.quantity = quantity
+            itemInCart.quantity = finalQuantity
             setCart(cart)
         }
         else {
+            product.quantity = quantity
             setCart([...cart, product])
         }
     }
@@ -33,9 +34,17 @@ export const CartProvider = ({children}) => {
         return cart.some((product)=> product.id === id)
     }
 
+    const itemCount = () => {
+        let count = 0
+        cart.forEach(product => {
+            count = count + product.quantity
+        });
+        return count
+    }
+
     //.....Return
     return (
-        <CartContext.Provider value={{cart, addItem, clear, removeItem, isInCart}}>
+        <CartContext.Provider value={{cart, addItem, clear, removeItem, isInCart, itemCount}}>
             {children}
         </CartContext.Provider>
     )

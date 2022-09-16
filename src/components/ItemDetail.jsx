@@ -1,4 +1,4 @@
-import { Box, LinearProgress } from "@mui/material";
+import { Box } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import React from "react";
 import ItemCount from "./ItemCount";
@@ -13,15 +13,6 @@ const ItemDetail = ({ item }) => {
 	const [compra, setCompra] = useState(false);
 	const navigate = useNavigate()
 	const {addItem} = useCart()
-
-	if (!item) {
-		return (
-			<Box sx={{ width: "100%" }}>
-				<LinearProgress />
-			</Box>
-		);
-	}
-
 	const {id, name, brand, price, stock, pictureURL, pictureAlt} = item
 	
 	const onAdd = () => {
@@ -32,10 +23,10 @@ const ItemDetail = ({ item }) => {
             stock,
             pictureURL,
 			pictureAlt,
-            quantity: count,
+            quantity: 0,
         }
 		setCompra(true)
-		addItem(product)
+		addItem(product, count)
 	};
 
 	return (

@@ -147,7 +147,6 @@ const ResponsiveAppBar = () => {
 							</NavLink>
 						))}
 					</Box>
-
 					<CartWidget />
 				</Toolbar>
 			</Container>
