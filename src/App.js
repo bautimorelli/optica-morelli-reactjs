@@ -6,10 +6,11 @@ import NavBar from "./components/NavBar";
 import theme from "./MuiTheme";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Cart from "./components/Cart";
+import { CartProvider } from "./context/CartContext";
 
 function App() {
 	return (
-		<>
+		<CartProvider>
 			<BrowserRouter>
 				<ThemeProvider theme={theme}>
 					<NavBar />
@@ -33,11 +34,11 @@ function App() {
 					/>
 					<Route
 						path="/cart"
-						element={<Cart/>}
+						element={<Cart />}
 					/>
 				</Routes>
 			</BrowserRouter>
-		</>
+		</CartProvider>
 	);
 }
 

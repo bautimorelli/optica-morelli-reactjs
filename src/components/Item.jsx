@@ -26,7 +26,7 @@ const Item = ({ item }) => {
 						gutterBottom
 						variant="h5"
 						component="div">
-						{item.title}
+						{item.name}
 					</Typography>
 					<Typography
 						variant="body2"

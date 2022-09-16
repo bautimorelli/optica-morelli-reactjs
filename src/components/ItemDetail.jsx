@@ -6,15 +6,13 @@ import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useCart } from "../context/CartContext";
 
 const ItemDetail = ({ item }) => {
-	const onAdd = () => {
-		console.log(`compraste ${count} items del producto ${item.title}`)
-		setCompra(true)
-	};
 	const [count, setCount] = useState(1);
 	const [compra, setCompra] = useState(false);
 	const navigate = useNavigate()
+	const {addItem} = useCart()
 
 	if (!item) {
 		return (
@@ -23,6 +21,22 @@ const ItemDetail = ({ item }) => {
 			</Box>
 		);
 	}
+
+	const {id, name, brand, price, stock, pictureURL, pictureAlt} = item
+	
+	const onAdd = () => {
+		let product = {
+            id,
+			name,
+            price,
+            stock,
+            pictureURL,
+			pictureAlt,
+            quantity: count,
+        }
+		setCompra(true)
+		addItem(product)
+	};
 
 	return (
 		<Box
@@ -36,8 +50,8 @@ const ItemDetail = ({ item }) => {
 			<Box>
 				<Box
 					component="img"
-					src={item.pictureURL}
-					alt={item.pictureAlt}
+					src={pictureURL}
+					alt={pictureAlt}
 					sx={{
 						objectFit: "contain",
 						maxHeight: 300,
@@ -57,29 +71,29 @@ const ItemDetail = ({ item }) => {
 					variant="h4"
 					component="div"
 					sx={{ mb: 1 }}>
-					{item.title}
+					{name}
 				</Typography>
 				<Typography
 					variant="body"
 					component="div"
 					sx={{ mb: 2 }}>
-					{item.brand}
+					{brand}
 				</Typography>
 				<Typography
 					variant="body"
 					color="text.secondary"
 					sx={{ mb: 2 }}>
-					$ {item.price}
+					$ {price}
 				</Typography>
 				<Typography
 					variant="body2"
 					color="text.secondary"
 					sx={{ mb: 2 }}>
-					Stock: {item.stock}
+					Stock: {stock}
 				</Typography>
 				{!compra ? (
 					<ItemCount
-						stock={item.stock}
+						stock={stock}
 						onAdd={onAdd}
 						count={count}
 						setCount={setCount}
