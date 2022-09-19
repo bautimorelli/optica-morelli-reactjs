@@ -1,14 +1,15 @@
-import { Typography, Box } from "@mui/material";
+import { Typography, Box, Button } from "@mui/material";
 import React from "react";
 import { useMemo } from "react";
 import { useCart } from "../context/CartContext";
 import CartItem from "./CartItem";
 import EmptyCartButton from "./EmptyCartButton";
 import FinishedCartButton from "./FinishedCartButton";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
 	const { cart, totalPrice } = useCart();
-
+	const navigate = useNavigate()
 	const totalFormatted = useMemo(() => {
 		console.log(cart);
 		return Intl.NumberFormat(navigator.language).format(totalPrice());
@@ -23,7 +24,16 @@ const Cart = () => {
 				Tu carrito
 			</Typography>
 			{cart.length === 0 ? (
-				<Typography variant="body1">Tu carrito esta vacio</Typography>
+				<Box sx={{
+					display: "flex",
+					justifyContent: "center",
+					alignItems:"center",
+					flexDirection:"column",
+					height:"50vh"
+				}}>
+					<Typography variant="h3" marginY={3}>Tu carrito esta vacio!</Typography>
+					<Button variant="outlined" onClick={() => navigate('/')}>Ir a la tienda</Button>
+				</Box>
 			) : (
 				<>
 					{cart.map((product) => (
@@ -49,8 +59,8 @@ const Cart = () => {
 							justifyContent: "center",
 							alignItems: "center",
 						}}>
-						<EmptyCartButton/>
-						<FinishedCartButton/>
+						<EmptyCartButton />
+						<FinishedCartButton />
 					</Box>
 				</>
 			)}
