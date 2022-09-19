@@ -60,7 +60,7 @@ const CartItem = ({ product }) => {
 					<Typography
 						variant="h6"
 						marginX={1}>
-						${price}
+						${Intl.NumberFormat(navigator.language).format(price)}
 					</Typography>
 					<ButtonGroup
 						variant="text"
@@ -95,7 +95,7 @@ const CartItem = ({ product }) => {
 					<Typography
 						variant="h6"
 						marginX={1}>
-						${price * quantity}
+						${Intl.NumberFormat(navigator.language).format(price * quantity)}
 					</Typography>
 					<IconButton
 						sx={{ mx: 1 }}

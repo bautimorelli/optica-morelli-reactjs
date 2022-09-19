@@ -1,6 +1,5 @@
 import { Typography, Box, Button } from "@mui/material";
 import React from "react";
-import { useMemo } from "react";
 import { useCart } from "../context/CartContext";
 import CartItem from "./CartItem";
 import EmptyCartButton from "./EmptyCartButton";
@@ -10,10 +9,6 @@ import { useNavigate } from "react-router-dom";
 const Cart = () => {
 	const { cart, totalPrice } = useCart();
 	const navigate = useNavigate()
-	const totalFormatted = useMemo(() => {
-		console.log(cart);
-		return Intl.NumberFormat(navigator.language).format(totalPrice());
-	}, [cart, totalPrice]);
 
 	return (
 		<>
@@ -50,7 +45,7 @@ const Cart = () => {
 							mx: "7%",
 							justifyContent: "flex-end",
 						}}>
-						Total: ${totalFormatted}
+						Total: ${Intl.NumberFormat(navigator.language).format(totalPrice())}
 					</Typography>
 					<Box
 						sx={{
