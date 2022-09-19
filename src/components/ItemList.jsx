@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box} from "@mui/material";
 import Item from "./Item";
 
 const ItemList = ({ items }) => {
@@ -6,9 +6,8 @@ const ItemList = ({ items }) => {
 		<Box
 			sx={{
 				display: "flex",
-				flexDirection: "row",
-				flexWrap: "wrap",
-				justifyContent: "space-evenly",
+				flexFlow: "row wrap",
+				justifyContent: "center",
 				mx: 3,
 			}}>
 			{items.map((item) => (

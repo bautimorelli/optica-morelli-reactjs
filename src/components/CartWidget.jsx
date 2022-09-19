@@ -14,7 +14,7 @@ const CartWidget = () => {
 
 	useEffect(() => {
 		setCount(itemCount());
-	}, [cart]);
+	}, [cart, itemCount]);
 
 	return (
 		<IconButton

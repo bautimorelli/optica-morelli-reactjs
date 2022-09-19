@@ -13,15 +13,15 @@ const Item = ({ item }) => {
 
 	return (
 		<Grow in={true}>
-			<Card sx={{ width: 290, m: 5, boxShadow: 2 }}>
+			<Card sx={{ minWidth: 340, m: 4, boxShadow: 1, maxWidth: 400, flex: 1 }}>
 				<CardMedia
 					component="img"
 					height="250"
 					image={item.pictureURL}
 					alt={item.pictureAlt}
-					sx={{ objectFit: "contain" }}
+					sx={{ objectFit: "scale-down" }}
 				/>
-				<CardContent>
+				<CardContent sx={{display:"flex", flexFlow:"column nowrap" , alignItems: "center" }}>
 					<Typography
 						gutterBottom
 						variant="h5"
@@ -37,7 +37,7 @@ const Item = ({ item }) => {
 				<CardActions sx={{ justifyContent: "center" }}>
 					<Button
 						size="small"
-						variant="outlined"
+						variant="text"
 						onClick={()=>navigate(`item/${item.id}`)}
 						>
 						Ver producto

@@ -80,7 +80,7 @@ const ItemDetail = ({ item }) => {
 					variant="body2"
 					color="text.secondary"
 					sx={{ mb: 2 }}>
-					Stock: {stock}
+					Stock Disponible: {stock}
 				</Typography>
 				{!compra ? (
 					<ItemCount
