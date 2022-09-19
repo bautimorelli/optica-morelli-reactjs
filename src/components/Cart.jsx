@@ -1,8 +1,10 @@
-import { Typography } from "@mui/material";
+import { Typography, Box } from "@mui/material";
 import React from "react";
 import { useMemo } from "react";
 import { useCart } from "../context/CartContext";
 import CartItem from "./CartItem";
+import EmptyCartButton from "./EmptyCartButton";
+import FinishedCartButton from "./FinishedCartButton";
 
 const Cart = () => {
 	const { cart, totalPrice } = useCart();
@@ -30,7 +32,26 @@ const Cart = () => {
 							product={product}
 						/>
 					))}
-					<Typography>Total: ${totalFormatted}</Typography>
+					<Typography
+						variant="h5"
+						sx={{
+							display: "flex",
+							my: 3,
+							mx: "7%",
+							justifyContent: "flex-end",
+						}}>
+						Total: ${totalFormatted}
+					</Typography>
+					<Box
+						sx={{
+							display: "flex",
+							flexFlow: "row nowrap",
+							justifyContent: "center",
+							alignItems: "center",
+						}}>
+						<EmptyCartButton/>
+						<FinishedCartButton/>
+					</Box>
 				</>
 			)}
 		</>

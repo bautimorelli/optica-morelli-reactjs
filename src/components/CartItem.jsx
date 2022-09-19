@@ -45,7 +45,7 @@ const CartItem = ({ product }) => {
 					/>
 					<Typography
 						variant="h6"
-						marginX="10px">
+						marginX="15px">
 						{name}
 					</Typography>
 				</Box>
