@@ -18,7 +18,7 @@ const Item = ({ item }) => {
 					component="img"
 					height="250"
 					image={item.pictureURL}
-					alt={item.pictureAlt}
+					alt={item.name}
 					sx={{ objectFit: "scale-down" }}
 				/>
 				<CardContent sx={{display:"flex", flexFlow:"column nowrap" , alignItems: "center" }}>

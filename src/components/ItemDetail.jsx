@@ -42,7 +42,7 @@ const ItemDetail = ({ item }) => {
 				<Box
 					component="img"
 					src={pictureURL}
-					alt={pictureAlt}
+					alt={name}
 					sx={{
 						objectFit: "contain",
 						maxHeight: 300,

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchItem } from "../mocks/mockData";
 import ItemDetail from "./ItemDetail";
 import ProgressLine from "./ProgressLine";
+import { collection, doc, getDoc } from 'firebase/firestore'
+import { database } from "../firebase/firebase";
 
 const ItemDetailContainer = () => {
 	const [itemDetail, setItemDetail] = useState();
@@ -10,13 +11,16 @@ const ItemDetailContainer = () => {
 	const { id } = useParams();
 
 	useEffect(() => {
-		fetchItem(id)
-			.then((res) => {
-				setItemDetail(res);
+		const productCollection = collection(database, "products");
+		const docReference = doc(productCollection, id);
+		getDoc(docReference)
+			.then((result) => {
+				setItemDetail({
+					id: result.id,
+					...result.data(),
+				});
 			})
-			.catch((err) => {
-				console.log(err);
-			})
+			.catch((error) => console.log(error))
 			.finally(() => setLoading(false));
 	}, [id]);
 
