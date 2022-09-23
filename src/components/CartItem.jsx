@@ -1,7 +1,5 @@
 import {
 	Box,
-	Button,
-	ButtonGroup,
 	Divider,
 	IconButton,
 	Typography,
@@ -9,6 +7,7 @@ import {
 import DeleteIcon from "@mui/icons-material/Delete";
 import React from "react";
 import { useCart } from "../context/CartContext";
+import InputSpinner from "./InputSpinner";
 
 const CartItem = ({ product }) => {
 	const { pictureURL, name, price, id, quantity } = product;
@@ -62,36 +61,7 @@ const CartItem = ({ product }) => {
 						marginX={1}>
 						${Intl.NumberFormat(navigator.language).format(price)}
 					</Typography>
-					<ButtonGroup
-						variant="text"
-						sx={{
-							border: 1,
-							borderColor: "primary.main",
-							borderRadius: "16px",
-							justifyContent: "flex-end",
-							maxWidth: 130,
-							mx: 2,
-						}}>
-						<Button
-							sx={{ borderRight: "0!important" }}
-							onClick={() => {
-								updateQuantity(id, -1);
-							}}>
-							-
-						</Button>
-						<Typography
-							variant="body1"
-							mx={2}
-							my={1}>
-							{quantity}
-						</Typography>
-						<Button
-							onClick={() => {
-								updateQuantity(id, 1);
-							}}>
-							+
-						</Button>
-					</ButtonGroup>
+					<InputSpinner quantity={quantity} addFunction={() => updateQuantity(id, 1)} lessFunction={() => updateQuantity(id, -1)}/>
 					<Typography
 						variant="h6"
 						marginX={1}>

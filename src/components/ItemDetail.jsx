@@ -11,22 +11,22 @@ import { useCart } from "../context/CartContext";
 const ItemDetail = ({ item }) => {
 	const [count, setCount] = useState(1);
 	const [compra, setCompra] = useState(false);
-	const navigate = useNavigate()
-	const {addItem} = useCart()
-	const {id, name, brand, price, stock, pictureURL, pictureAlt} = item
-	
+	const navigate = useNavigate();
+	const { addItem } = useCart();
+	const { id, name, brand, price, stock, pictureURL, pictureAlt } = item;
+
 	const onAdd = () => {
 		let product = {
-            id,
+			id,
 			name,
-            price,
-            stock,
-            pictureURL,
+			price,
+			stock,
+			pictureURL,
 			pictureAlt,
-            quantity: 0,
-        }
-		setCompra(true)
-		addItem(product, count)
+			quantity: 0,
+		};
+		setCompra(true);
+		addItem(product, count);
 	};
 
 	return (
@@ -87,12 +87,18 @@ const ItemDetail = ({ item }) => {
 						stock={stock}
 						onAdd={onAdd}
 						count={count}
-						setCount={setCount}
+						setCount={(value) => {
+							setCount(value);
+						}}
 					/>
 				) : (
 					<ButtonGroup>
-						<Button onClick={() => navigate('/cart')}>Ir al carrito</Button>
-						<Button onClick={() => navigate('/')}>Seguir Comprando</Button>
+						<Button onClick={() => navigate("/cart")}>
+							Ir al carrito
+						</Button>
+						<Button onClick={() => navigate("/")}>
+							Seguir Comprando
+						</Button>
 					</ButtonGroup>
 				)}
 			</Box>
