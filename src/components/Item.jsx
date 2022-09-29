@@ -9,6 +9,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const Item = ({ item }) => {
+	const { id, name, pictureURL, price } = item
 	const navigate = useNavigate()
 
 	return (
@@ -17,8 +18,9 @@ const Item = ({ item }) => {
 				<CardMedia
 					component="img"
 					height="250"
-					image={item.pictureURL}
-					alt={item.name}
+					image={pictureURL}
+					alt={name}
+					title={name}
 					sx={{ objectFit: "scale-down" }}
 				/>
 				<CardContent sx={{display:"flex", flexFlow:"column nowrap" , alignItems: "center" }}>
@@ -26,19 +28,19 @@ const Item = ({ item }) => {
 						gutterBottom
 						variant="h5"
 						component="div">
-						{item.name}
+						{name}
 					</Typography>
 					<Typography
 						variant="body2"
 						color="text.secondary">
-						$ {item.price}
+						$ {price}
 					</Typography>
 				</CardContent>
 				<CardActions sx={{ justifyContent: "center" }}>
 					<Button
 						size="small"
 						variant="text"
-						onClick={()=>navigate(`item/${item.id}`)}
+						onClick={()=>navigate(`item/${id}`)}
 						>
 						Ver producto
 					</Button>

@@ -51,6 +51,7 @@ const ResponsiveAppBar = () => {
 								}}
 								alt="Optica Morelli logo"
 								src="/images/logoOpticaTransparent.png"
+								title="Optica Morelli"
 							/>
 						</NavLink>
 					</Box>
@@ -119,6 +120,7 @@ const ResponsiveAppBar = () => {
 								}}
 								alt="Optica Morelli logo"
 								src="/images/logoOpticaTransparent.png"
+								title="Optica Morelli"
 							/>
 						</NavLink>
 					</Box>

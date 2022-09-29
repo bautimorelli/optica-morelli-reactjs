@@ -43,6 +43,7 @@ const ItemDetail = ({ item }) => {
 					component="img"
 					src={pictureURL}
 					alt={name}
+					title={name}
 					sx={{
 						objectFit: "contain",
 						maxHeight: 300,

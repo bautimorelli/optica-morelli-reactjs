@@ -3,7 +3,7 @@ import { createContext, useContext, useState } from "react";
 export const CartContext = createContext()
 
 export const CartProvider = ({children}) => {
-    const [cart, setCart] = useState([])    
+    const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart")) ?? [])
 
     //.....Functions
     const addItem = (product, quantity) => {
@@ -14,20 +14,20 @@ export const CartProvider = ({children}) => {
                 finalQuantity = itemInCart.stock
             }
             itemInCart.quantity = finalQuantity
-            setCart([...cart])
+            updateCart([...cart])
         }
         else {
             product.quantity = quantity
-            setCart([...cart, product])
+            updateCart([...cart, product])
         }
     }
 
     const clear = () => {
-        setCart([])
+        updateCart([])
     }
 
     const removeItem = (id) => {
-        setCart(cart.filter((product)=> product.id !== id))
+        updateCart(cart.filter((product)=> product.id !== id))
     }
 
     const isInCart = (id) => {
@@ -49,7 +49,7 @@ export const CartProvider = ({children}) => {
             return
         }
         itemInCart.quantity = finalQuantity
-        setCart([...cart])
+        updateCart([...cart])
     }
 
     const totalPrice = () => {
@@ -58,6 +58,11 @@ export const CartProvider = ({children}) => {
             count = count + (product.price * product.quantity)
         })
         return count
+    }
+
+    const updateCart = (cart) => {
+        setCart(cart)
+        localStorage.setItem("cart", JSON.stringify(cart))
     }
 
     //.....Return

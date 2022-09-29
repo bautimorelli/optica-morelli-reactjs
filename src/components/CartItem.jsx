@@ -36,6 +36,8 @@ const CartItem = ({ product }) => {
 					<Box
 						component="img"
 						src={pictureURL}
+						title={name}
+						alt={name}
 						sx={{
 							objectFit: "contain",
 							width: 150,
