@@ -4,6 +4,7 @@ import { database } from "../firebase/firebase";
 import { Box, TextField, Typography } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { addDoc, collection } from "firebase/firestore";
+import Toast from "./Toast";
 
 const Checkout = () => {
 	const [id, setId] = useState("");
@@ -12,6 +13,7 @@ const Checkout = () => {
 	const [phone, setPhone] = useState("");
 	const [showId, setShowId] = useState(false);
 	const [loading, setLoading] = useState(false);
+	const [toast, setToast] = useState(false);
 
 	const { cart, totalPrice, clear } = useCart();
 
@@ -38,7 +40,7 @@ const Checkout = () => {
 		addDoc(orderCollection, order)
 			.then(({ id }) => setId(id))
 			.catch((e) => {
-				console.log(e);
+				setToast(true);
 			})
 			.finally(() => {
 				setShowId(true);
@@ -48,20 +50,31 @@ const Checkout = () => {
 
 	return (
 		<Box>
+			<Toast
+				text={"Error, vuelva a intentar mas tarde"}
+				time={2000}
+				type={"error"}
+				open={toast}
+				setOpen={setToast}
+			/>
 			{showId ? (
 				<Box
 					sx={{
 						display: "flex",
 						flexDirection: "row",
-                        justifyContent: "center",
+						justifyContent: "center",
 						my: "30vh",
-                        mx:"25px",
+						mx: "25px",
 					}}>
 					<Typography variant="h4">
-						Su compra fue realizada correctamente con el identificador:
+						Su compra fue realizada correctamente con el
+						identificador:
 						<Typography
 							variant="h4"
-							color={"#FF0000"}>
+							color={"#FF0000"}
+							sx={{
+								overflowWrap: "anywhere",
+							}}>
 							{id}
 						</Typography>
 					</Typography>
@@ -87,6 +100,7 @@ const Checkout = () => {
 							variant="standard"
 							margin="normal"
 							label="Nombre"
+							//inputProps={{pattern: "^([ \u00c0-\u01ffa-zA-Z'\-])+$"}}
 							onChange={(e) => setName(e.target.value)}
 						/>
 						<TextField
@@ -95,6 +109,7 @@ const Checkout = () => {
 							variant="standard"
 							margin="normal"
 							label="Email"
+							//inputProps={{pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"}}
 							onChange={(e) => setEmail(e.target.value)}
 						/>
 						<TextField
@@ -102,8 +117,9 @@ const Checkout = () => {
 							required
 							variant="standard"
 							margin="normal"
-							type="number"
-							label="Telefono"
+							label="Celular"
+							//inputProps={{pattern: "^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$"}}
+							helperText="Tu numero sin el 15"
 							onChange={(e) => setPhone(e.target.value)}
 						/>
 						<LoadingButton

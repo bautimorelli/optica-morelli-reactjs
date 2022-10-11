@@ -4,10 +4,13 @@ import { database } from "../firebase/firebase";
 import ItemList from "./ItemList";
 import ProgressLine from "./ProgressLine";
 import { collection, getDocs, query, where } from "firebase/firestore";
+import Toast from "./Toast";
 
 const ItemListContainer = () => {
 	const [items, setItems] = useState([]);
 	const [loading, setLoading] = useState(true);
+	const [toast, setToast] = useState(false);
+
 	const { categoryId } = useParams();
 
 	//firebase
@@ -15,10 +18,10 @@ const ItemListContainer = () => {
 		setLoading(true);
 		const products = categoryId
 			? query(
-				collection(database, "products"),
-				where("category", "==", categoryId)
-			)
-			: collection(database, "products")
+					collection(database, "products"),
+					where("category", "==", categoryId)
+			  )
+			: collection(database, "products");
 		getDocs(products)
 			.then((result) => {
 				const list = result.docs.map((product) => {
@@ -29,11 +32,22 @@ const ItemListContainer = () => {
 				});
 				setItems(list);
 			})
-			.catch((error) => console.log(error))
+			.catch((error) => setToast(true))
 			.finally(() => setLoading(false));
 	}, [categoryId]);
 
-	return <div>{loading ? <ProgressLine /> : <ItemList items={items} />}</div>;
+	return (
+		<div>
+			{loading ? <ProgressLine /> : <ItemList items={items} />}
+			<Toast
+				text={"Error, vuelva a intentar mas tarde"}
+				time={2000}
+				type={"error"}
+				open={toast}
+				setOpen={setToast}
+			/>
+		</div>
+	);
 };
 
 export default ItemListContainer;

@@ -12,8 +12,9 @@ const InputSpinner = ({ quantity, addFunction, lessFunction }) => {
 				borderColor: "primary.main",
 				borderRadius: "16px",
 				justifyContent: "space-between",
-				maxWidth: 130,
-				mx: 2,
+				width: 120,
+				height: 40,
+				mx: 1
 			}}>
 			<Button
 				sx={{ borderRight: "0!important" }}

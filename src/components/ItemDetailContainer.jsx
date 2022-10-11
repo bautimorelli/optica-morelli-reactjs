@@ -4,10 +4,13 @@ import ItemDetail from "./ItemDetail";
 import ProgressLine from "./ProgressLine";
 import { collection, doc, getDoc } from 'firebase/firestore'
 import { database } from "../firebase/firebase";
+import Toast from "./Toast";
 
 const ItemDetailContainer = () => {
 	const [itemDetail, setItemDetail] = useState();
 	const [loading, setLoading] = useState(true);
+	const [toast, setToast] = useState(false);
+	
 	const { id } = useParams();
 
 	useEffect(() => {
@@ -20,12 +23,19 @@ const ItemDetailContainer = () => {
 					...result.data(),
 				});
 			})
-			.catch((error) => console.log(error))
+			.catch((error) => setToast(true))
 			.finally(() => setLoading(false));
 	}, [id]);
 
 	return (
 		<div>
+			<Toast
+				text={"Error, vuelva a intentar mas tarde"}
+				time={2000}
+				type={"error"}
+				open={toast}
+				setOpen={setToast}
+			/>
 			{loading ? <ProgressLine /> : <ItemDetail item={itemDetail} />}
 		</div>
 	);

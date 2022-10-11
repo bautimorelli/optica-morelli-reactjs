@@ -1,17 +1,17 @@
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import InputSpinner from "./InputSpinner";
-
 const ItemCount = ({ stock, onAdd, count, setCount }) => {
+
 	const updateCount = (number) => {
 		if (count + number > 0 && count + number <= stock) {
-			setCount(count + number);
+			setCount(count + number)
 		}
 	};
 
 	const addToCart = () => {
 		if (stock > 0 && count > 0) {
-			onAdd(count);
+			onAdd(count)
 		}
 	};
 
@@ -19,9 +19,10 @@ const ItemCount = ({ stock, onAdd, count, setCount }) => {
 		<Box
 			sx={{
 				display: "inline-flex",
-				flexDirection: "column",
-				mx: 1,
-				my: 3,
+				flexDirection: "row",
+				flexWrap: "wrap",
+				alignItems: "center",
+				my: 1,
 			}}>
 			<InputSpinner
 				quantity={count}
@@ -29,8 +30,8 @@ const ItemCount = ({ stock, onAdd, count, setCount }) => {
 				lessFunction={() => updateCount(-1)}
 			/>
 			<Button
-				variant="outlined"
-				sx={{ my: 2, maxWidth: 200 }}
+				variant="contained"
+				sx={{ maxWidth: 200, height: 42, my: 2, mx: 1 }}
 				onClick={addToCart}>
 				Agregar al Carrito
 			</Button>

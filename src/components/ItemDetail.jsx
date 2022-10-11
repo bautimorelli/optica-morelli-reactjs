@@ -1,32 +1,42 @@
+import React, { useState } from "react";
 import { Box } from "@mui/material";
 import Typography from "@mui/material/Typography";
-import React from "react";
 import ItemCount from "./ItemCount";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import { useCart } from "../context/CartContext";
+import BackdropImage from "./BackdropImage";
+import { useTheme } from "@mui/material/styles";
+import Toast from "./Toast";
 
 const ItemDetail = ({ item }) => {
+	const { id, name, brand, price, stock, pictureURL } = item;
 	const [count, setCount] = useState(1);
 	const [compra, setCompra] = useState(false);
+	const [overflow, setOverflow] = useState(false);
+	const [open, setOpen] = useState(false)
+
 	const navigate = useNavigate();
-	const { addItem } = useCart();
-	const { id, name, brand, price, stock, pictureURL, pictureAlt } = item;
+	const { addItem, stockOverflow } = useCart();
+	const theme = useTheme();
 
 	const onAdd = () => {
-		let product = {
-			id,
-			name,
-			price,
-			stock,
-			pictureURL,
-			pictureAlt,
-			quantity: 0,
-		};
-		setCompra(true);
-		addItem(product, count);
+		if (!stockOverflow(id, count)) {
+			let product = {
+				id,
+				name,
+				price,
+				stock,
+				pictureURL,
+				quantity: 0,
+			};
+			addItem(product, count)
+		} else {
+			setOverflow(true)
+		}
+		setCompra(true)
+		setOpen(true)
 	};
 
 	return (
@@ -38,26 +48,23 @@ const ItemDetail = ({ item }) => {
 				justifyContent: "center",
 				my: 6,
 			}}>
-			<Box>
-				<Box
-					component="img"
-					src={pictureURL}
-					alt={name}
-					title={name}
-					sx={{
-						objectFit: "contain",
-						maxHeight: 300,
-						maxWidth: 450,
-						mr: 5,
-					}}
-				/>
-			</Box>
+			<BackdropImage
+				name={name}
+				pictureURL={pictureURL}
+			/>
 			<Box
 				sx={{
 					display: "inline-flex",
 					flexDirection: "column",
 					flexWrap: "wrap",
-					ml: 5,
+					justifyContent: "center",
+					ml: 1,
+					[theme.breakpoints.down("sm")]: {
+						width: 350,
+					},
+					[theme.breakpoints.up("sm")]: {
+						width: 450,
+					},
 				}}>
 				<Typography
 					variant="h4"
@@ -93,14 +100,35 @@ const ItemDetail = ({ item }) => {
 						}}
 					/>
 				) : (
-					<ButtonGroup>
-						<Button onClick={() => navigate("/cart")}>
-							Ir al carrito
-						</Button>
-						<Button onClick={() => navigate("/")}>
-							Seguir Comprando
-						</Button>
-					</ButtonGroup>
+					<>
+						<ButtonGroup>
+							<Button
+								variant="contained"
+								onClick={() => navigate("/cart")}>
+								Ir al carrito
+							</Button>
+							<Button onClick={() => navigate("/")}>
+								Seguir Comprando
+							</Button>
+						</ButtonGroup>
+						{!overflow ? (
+							<Toast
+								text={"Agregado al carrito correctamente"}
+								time={2000}
+								type={"success"}
+								open={open}
+								setOpen={setOpen}
+							/>
+						) : (
+							<Toast
+								text={"La cantidad agregada supera nuestro stock"}
+								time={2000}
+								type={"warning"}
+								open={open}
+								setOpen={setOpen}
+							/>
+						)}
+					</>
 				)}
 			</Box>
 		</Box>

@@ -3,7 +3,6 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import { Button } from "@mui/material";
 import { useCart } from "../context/CartContext";
@@ -44,13 +43,9 @@ const EmptyCartButton = () => {
 				TransitionComponent={Transition}
 				keepMounted
 				onClose={handleClose}>
-				<DialogTitle>
-					{"Seguro que desea vaciar el carrito?"}
-				</DialogTitle>
 				<DialogContent>
 					<DialogContentText id="alert-dialog-slide-description">
-						Se perderan todos los items guardados en el carrito
-						hasta el momento
+					¿Seguro que desea vaciar el carrito?
 					</DialogContentText>
 				</DialogContent>
 				<DialogActions>
