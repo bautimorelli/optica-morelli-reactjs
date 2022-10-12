@@ -10,6 +10,9 @@ const CartItem = ({ product, setToast }) => {
 	const { removeItem, updateQuantity } = useCart()
 	const theme = useTheme()
 
+	const formatPrice = (price) =>
+		Intl.NumberFormat(navigator.language).format(price)
+
 	return (
 		<Box>
 			<Box
@@ -62,7 +65,7 @@ const CartItem = ({ product, setToast }) => {
 					<Typography
 						variant="h6"
 						marginX={1}>
-						${Intl.NumberFormat(navigator.language).format(price)}
+						${formatPrice(price)}
 					</Typography>
 					<InputSpinner
 						quantity={quantity}
@@ -72,10 +75,7 @@ const CartItem = ({ product, setToast }) => {
 					<Typography
 						variant="h6"
 						marginX={1}>
-						$
-						{Intl.NumberFormat(navigator.language).format(
-							price * quantity
-						)}
+						${formatPrice(price * quantity)}
 					</Typography>
 					<IconButton
 						sx={{ mx: 1 }}

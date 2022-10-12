@@ -2,6 +2,9 @@ import { Box, Divider, Typography } from "@mui/material"
 import React from "react"
 
 const Ticket = ({ id, cart, total }) => {
+	const formatPrice = (price) =>
+		Intl.NumberFormat(navigator.language).format(price)
+
 	return (
 		<Box
 			sx={{
@@ -30,19 +33,14 @@ const Ticket = ({ id, cart, total }) => {
 					<Box
 						key={product.id}
 						sx={{ display: "flex", flexDirection: "row" }}>
-						<Typography>{product.quantity} - </Typography>
-						<Typography>{product.name} - </Typography>
 						<Typography>
-							$
-							{Intl.NumberFormat(navigator.language).format(
-								product.price * product.quantity
-							)}
+							{product.quantity} - {product.name} - $
+							{formatPrice(product.price * product.quantity)}
 						</Typography>
 					</Box>
 				))}
 				<Typography sx={{ marginY: 2 }}>
-					Total: $
-					{Intl.NumberFormat(navigator.language).format(total)}{" "}
+					Total: ${formatPrice(total)}
 				</Typography>
 				<Divider variant="middle" />
 				<Typography

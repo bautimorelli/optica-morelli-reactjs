@@ -12,6 +12,9 @@ const Item = ({ item }) => {
 	const { id, name, pictureURL, price } = item
 	const navigate = useNavigate()
 
+	const formatPrice = (price) =>
+		Intl.NumberFormat(navigator.language).format(price)
+
 	return (
 		<Grow in={true}>
 			<Card
@@ -45,7 +48,7 @@ const Item = ({ item }) => {
 					<Typography
 						variant="body2"
 						color="text.secondary">
-						$ {price}
+						${formatPrice(price)}
 					</Typography>
 				</CardContent>
 				<CardActions sx={{ justifyContent: "center" }}>

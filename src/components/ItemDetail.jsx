@@ -13,13 +13,16 @@ import Toast from "./Toast"
 const ItemDetail = ({ item }) => {
 	const { id, name, brand, price, stock, pictureURL } = item
 	const [count, setCount] = useState(1)
-	const [compra, setCompra] = useState(false)
+	const [boughtItem, setBoughtItem] = useState(false)
 	const [overflow, setOverflow] = useState(false)
 	const [open, setOpen] = useState(false)
 
 	const navigate = useNavigate()
 	const { addItem, stockOverflow } = useCart()
 	const theme = useTheme()
+
+	const formatPrice = (price) =>
+		Intl.NumberFormat(navigator.language).format(price)
 
 	const onAdd = () => {
 		if (!stockOverflow(id, count)) {
@@ -32,15 +35,60 @@ const ItemDetail = ({ item }) => {
 				quantity: 0,
 			}
 			addItem(product, count)
+			setBoughtItem(true)
 		} else {
 			setOverflow(true)
 		}
-		setCompra(true)
 		setOpen(true)
 	}
 
 	const showToast = (visible) => {
 		setOpen(visible)
+	}
+
+	let buyContent
+	if (boughtItem) {
+		// Item ya comprado
+		buyContent = (
+			<>
+				<ButtonGroup>
+					<Button
+						variant="contained"
+						onClick={() => navigate("/cart")}>
+						Ir al carrito
+					</Button>
+					<Button onClick={() => navigate("/")}>
+						Seguir Comprando
+					</Button>
+				</ButtonGroup>
+			</>
+		)
+	} else if (stock === 0) {
+		// Item sin stock
+		buyContent = (
+			<Box>
+				<Typography marginBottom={2}>
+					Lo sentimos! Este producto no cuenta con sock por el momento
+				</Typography>
+				<Button
+					variant="contained"
+					onClick={() => navigate("/")}>
+					Seguir Comprando
+				</Button>
+			</Box>
+		)
+	} else {
+		// Selector de Cantidad
+		buyContent = (
+			<ItemCount
+				stock={stock}
+				onAdd={onAdd}
+				count={count}
+				setCount={(value) => {
+					setCount(value)
+				}}
+			/>
+		)
 	}
 
 	return (
@@ -52,6 +100,17 @@ const ItemDetail = ({ item }) => {
 				justifyContent: "center",
 				my: 6,
 			}}>
+			<Toast
+				text={
+					overflow
+						? "La cantidad agregada supera nuestro stock"
+						: "Agregado al carrito correctamente"
+				}
+				time={2000}
+				type={overflow ? "warning" : "success"}
+				open={open}
+				setOpen={showToast}
+			/>
 			<BackdropImage
 				name={name}
 				pictureURL={pictureURL}
@@ -86,7 +145,7 @@ const ItemDetail = ({ item }) => {
 					variant="body"
 					color="text.secondary"
 					sx={{ mb: 2 }}>
-					$ {price}
+					${formatPrice(price)}
 				</Typography>
 				<Typography
 					variant="body2"
@@ -94,66 +153,7 @@ const ItemDetail = ({ item }) => {
 					sx={{ mb: 2 }}>
 					Stock Disponible: {stock}
 				</Typography>
-				{stock === 0 ? (
-					<Box>
-						<Typography marginBottom={2}>
-							Lo sentimos! Este producto no cuenta con sock por el
-							momento
-						</Typography>
-						<Button
-							variant="contained"
-							onClick={() => navigate("/")}>
-							Seguir Comprando
-						</Button>
-					</Box>
-				) : (
-					<>
-						{!compra ? (
-							<ItemCount
-								stock={stock}
-								onAdd={onAdd}
-								count={count}
-								setCount={(value) => {
-									setCount(value)
-								}}
-							/>
-						) : (
-							<>
-								<ButtonGroup>
-									<Button
-										variant="contained"
-										onClick={() => navigate("/cart")}>
-										Ir al carrito
-									</Button>
-									<Button onClick={() => navigate("/")}>
-										Seguir Comprando
-									</Button>
-								</ButtonGroup>
-								{!overflow ? (
-									<Toast
-										text={
-											"Agregado al carrito correctamente"
-										}
-										time={2000}
-										type={"success"}
-										open={open}
-										setOpen={showToast}
-									/>
-								) : (
-									<Toast
-										text={
-											"La cantidad agregada supera nuestro stock"
-										}
-										time={2000}
-										type={"warning"}
-										open={open}
-										setOpen={showToast}
-									/>
-								)}
-							</>
-						)}
-					</>
-				)}
+				{buyContent}
 			</Box>
 		</Box>
 	)

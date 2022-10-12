@@ -15,6 +15,9 @@ const Cart = () => {
 		setToast(visible)
 	}
 
+	const formatPrice = (price) =>
+		Intl.NumberFormat(navigator.language).format(price)
+
 	let mainContent
 	if (cart.length === 0) {
 		mainContent = <EmptyCart />
@@ -43,8 +46,7 @@ const Cart = () => {
 						mx: "7%",
 						justifyContent: "flex-end",
 					}}>
-					Total: $
-					{Intl.NumberFormat(navigator.language).format(totalPrice())}
+					Total: ${formatPrice(totalPrice())}
 				</Typography>
 				<Box
 					sx={{
