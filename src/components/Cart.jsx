@@ -1,16 +1,15 @@
-import { Typography, Box, Button } from "@mui/material";
+import { Typography, Box } from "@mui/material";
 import React, { useState } from "react";
 import { useCart } from "../context/CartContext";
 import CartItem from "./CartItem";
 import EmptyCartButton from "./EmptyCartButton";
 import FinishedCartButton from "./FinishedCartButton";
-import { useNavigate } from "react-router-dom";
 import Toast from "./Toast";
+import EmptyCart from "./EmptyCart";
 
 const Cart = () => {
 	const { cart, totalPrice } = useCart();
 	const [toast, setToast] = useState(false);
-	const navigate = useNavigate();
 
 	return (
 		<>
@@ -28,26 +27,7 @@ const Cart = () => {
 				Tu carrito
 			</Typography>
 			{cart.length === 0 ? (
-				<Box
-					sx={{
-						display: "flex",
-						justifyContent: "center",
-						alignItems: "center",
-						flexDirection: "column",
-						height: "50vh",
-					}}>
-					<Typography
-						variant="h3"
-						marginY={3}
-						textAlign="center">
-						Tu carrito esta vacio!
-					</Typography>
-					<Button
-						variant="contained"
-						onClick={() => navigate("/")}>
-						Ir a la tienda
-					</Button>
-				</Box>
+				<EmptyCart/>
 			) : (
 				<>
 					{cart.map((product) => (

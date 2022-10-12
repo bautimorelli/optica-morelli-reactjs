@@ -12,7 +12,6 @@ const InputSpinner = ({ quantity, addFunction, lessFunction }) => {
 				borderColor: "primary.main",
 				borderRadius: "16px",
 				justifyContent: "space-between",
-				width: 120,
 				height: 40,
 				mx: 1
 			}}>

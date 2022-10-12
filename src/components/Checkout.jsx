@@ -5,14 +5,21 @@ import { Box, Typography } from "@mui/material";
 import { addDoc, collection } from "firebase/firestore";
 import Toast from "./Toast";
 import CheckoutForm from "./CheckoutForm";
+import Ticket from "./Ticket";
+import EmptyCart from "./EmptyCart";
 
 const Checkout = () => {
 	const [id, setId] = useState("");
 	const [showId, setShowId] = useState(false);
 	const [toast, setToast] = useState(false);
-	const { cart, totalPrice, clear } = useCart();
+	const { cart, totalPrice, clear} = useCart();
+	const [savedCart, setSavedCart] = useState();
+	const [savedTotal, setSavedTotal] = useState();
+	
 
 	const submitCheckout = (name, email, phone) => {
+		setSavedCart(cart)
+		setSavedTotal(totalPrice())
 		let order = {
 			buyer: {
 				name,
@@ -36,12 +43,17 @@ const Checkout = () => {
 			})
 			.finally(() => {
 				setShowId(true);
-				clear();
+				clear()
 			});
 	};
 
 	return (
+		
 		<Box>
+			{cart.length === 0 ? (
+				<EmptyCart/>
+			) : (
+			<>
 			<Toast
 				text={"Error, vuelva a intentar mas tarde"}
 				time={2000}
@@ -50,29 +62,9 @@ const Checkout = () => {
 				setOpen={setToast}
 			/>
 			{showId ? (
-				<Box
-					sx={{
-						display: "flex",
-						flexDirection: "row",
-						justifyContent: "center",
-						my: "30vh",
-						mx: "25px",
-					}}>
-					<Typography variant="h4">
-						Su compra fue realizada correctamente con el
-						identificador:
-						<div>
-							<Typography
-								variant="h4"
-								color={"#FF0000"}
-								sx={{
-									overflowWrap: "anywhere",
-								}}>
-								{id}
-							</Typography>
-						</div>
-					</Typography>
-				</Box>
+				<>
+					<Ticket id={id} cart={savedCart} total={savedTotal} />
+				</>
 			) : (
 				<>
 					<Box
@@ -96,6 +88,8 @@ const Checkout = () => {
 						<CheckoutForm submitCheckout={submitCheckout} />
 					</Box>
 				</>
+			)}
+			</>
 			)}
 		</Box>
 	);
