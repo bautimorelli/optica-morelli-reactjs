@@ -1,12 +1,12 @@
-import Button from "@mui/material/Button";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Grow from "@mui/material/Grow";
-import Typography from "@mui/material/Typography";
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import Button from "@mui/material/Button"
+import Card from "@mui/material/Card"
+import CardActions from "@mui/material/CardActions"
+import CardContent from "@mui/material/CardContent"
+import CardMedia from "@mui/material/CardMedia"
+import Grow from "@mui/material/Grow"
+import Typography from "@mui/material/Typography"
+import React from "react"
+import { useNavigate } from "react-router-dom"
 
 const Item = ({ item }) => {
 	const { id, name, pictureURL, price } = item
@@ -14,7 +14,14 @@ const Item = ({ item }) => {
 
 	return (
 		<Grow in={true}>
-			<Card sx={{ minWidth: 340, m: 4, boxShadow: 1, maxWidth: 400, flex: 1 }}>
+			<Card
+				sx={{
+					minWidth: 340,
+					m: 4,
+					boxShadow: 1,
+					maxWidth: 400,
+					flex: 1,
+				}}>
 				<CardMedia
 					component="img"
 					height="250"
@@ -23,7 +30,12 @@ const Item = ({ item }) => {
 					title={name}
 					sx={{ objectFit: "scale-down" }}
 				/>
-				<CardContent sx={{display:"flex", flexFlow:"column nowrap" , alignItems: "center" }}>
+				<CardContent
+					sx={{
+						display: "flex",
+						flexFlow: "column nowrap",
+						alignItems: "center",
+					}}>
 					<Typography
 						gutterBottom
 						variant="h5"
@@ -40,8 +52,7 @@ const Item = ({ item }) => {
 					<Button
 						size="small"
 						variant="text"
-						onClick={()=>navigate(`item/${id}`)}
-						>
+						onClick={() => navigate(`item/${id}`)}>
 						Ver producto
 					</Button>
 				</CardActions>

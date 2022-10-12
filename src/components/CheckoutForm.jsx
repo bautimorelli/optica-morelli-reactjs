@@ -1,22 +1,22 @@
-import React, { useState } from "react";
-import { LoadingButton } from "@mui/lab";
-import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
-import { Box } from "@mui/system";
+import React, { useState } from "react"
+import { LoadingButton } from "@mui/lab"
+import { ValidatorForm, TextValidator } from "react-material-ui-form-validator"
+import { Box } from "@mui/system"
 
-const CheckoutForm = ({submitCheckout}) => {
-	const [email, setEmail] = useState("");
-	const [name, setName] = useState("");
-	const [phone, setPhone] = useState("");
-	const [loading, setLoading] = useState(false);
+const CheckoutForm = ({ submitCheckout }) => {
+	const [email, setEmail] = useState("")
+	const [name, setName] = useState("")
+	const [phone, setPhone] = useState("")
+	const [loading, setLoading] = useState(false)
 
 	const handleSubmit = (e) => {
-		setLoading(true);
-		submitCheckout(name, email, phone);
-	};
+		setLoading(true)
+		submitCheckout(name, email, phone)
+	}
 
 	return (
 		<ValidatorForm onSubmit={handleSubmit}>
-			<Box sx={{display:"flex", flexDirection:"column"}}>
+			<Box sx={{ display: "flex", flexDirection: "column" }}>
 				<TextValidator
 					label="Nombre"
 					name="nombre"
@@ -68,7 +68,7 @@ const CheckoutForm = ({submitCheckout}) => {
 				</LoadingButton>
 			</Box>
 		</ValidatorForm>
-	);
-};
+	)
+}
 
-export default CheckoutForm;
+export default CheckoutForm

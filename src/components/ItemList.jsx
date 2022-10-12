@@ -1,5 +1,5 @@
-import { Box} from "@mui/material";
-import Item from "./Item";
+import { Box } from "@mui/material"
+import Item from "./Item"
 
 const ItemList = ({ items }) => {
 	return (
@@ -11,10 +11,13 @@ const ItemList = ({ items }) => {
 				mx: 3,
 			}}>
 			{items.map((item) => (
-				<Item key={item.id} item={item} />
+				<Item
+					key={item.id}
+					item={item}
+				/>
 			))}
 		</Box>
-	);
-};
+	)
+}
 
-export default ItemList;
+export default ItemList

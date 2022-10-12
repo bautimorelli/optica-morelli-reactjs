@@ -1,7 +1,7 @@
-import React from "react";
-import Button from "@mui/material/Button";
-import ButtonGroup from "@mui/material/ButtonGroup";
-import Typography from "@mui/material/Typography";
+import React from "react"
+import Button from "@mui/material/Button"
+import ButtonGroup from "@mui/material/ButtonGroup"
+import Typography from "@mui/material/Typography"
 
 const InputSpinner = ({ quantity, addFunction, lessFunction }) => {
 	return (
@@ -13,7 +13,7 @@ const InputSpinner = ({ quantity, addFunction, lessFunction }) => {
 				borderRadius: "16px",
 				justifyContent: "space-between",
 				height: 40,
-				mx: 1
+				mx: 1,
 			}}>
 			<Button
 				sx={{ borderRight: "0!important" }}
@@ -28,7 +28,7 @@ const InputSpinner = ({ quantity, addFunction, lessFunction }) => {
 			</Typography>
 			<Button onClick={addFunction}>+</Button>
 		</ButtonGroup>
-	);
-};
+	)
+}
 
-export default InputSpinner;
+export default InputSpinner

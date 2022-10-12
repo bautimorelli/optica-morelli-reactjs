@@ -1,18 +1,19 @@
-import React from "react";
-import { Box } from "@mui/material";
-import Backdrop from "@mui/material/Backdrop";
-import { useTheme } from "@mui/material/styles";
+import React from "react"
+import { Box } from "@mui/material"
+import Backdrop from "@mui/material/Backdrop"
+import { useTheme } from "@mui/material/styles"
+import { useState } from "react"
 
 const BackdropImage = ({ name, pictureURL }) => {
-	const theme = useTheme();
-	const [open, setOpen] = React.useState(false);
+	const theme = useTheme()
+	const [open, setOpen] = useState(false)
 
 	const handleClose = () => {
-		setOpen(false);
-	};
+		setOpen(false)
+	}
 	const handleToggle = () => {
-		setOpen(!open);
-	};
+		setOpen(!open)
+	}
 
 	return (
 		<Box
@@ -31,9 +32,9 @@ const BackdropImage = ({ name, pictureURL }) => {
 				alt={name}
 				title={name}
 				sx={{
-					display:"block",
+					display: "block",
 					objectFit: "contain",
-					margin:"auto",
+					margin: "auto",
 					maxHeight: 300,
 					[theme.breakpoints.down("sm")]: {
 						maxWidth: 350,
@@ -69,7 +70,7 @@ const BackdropImage = ({ name, pictureURL }) => {
 				/>
 			</Backdrop>
 		</Box>
-	);
-};
+	)
+}
 
-export default BackdropImage;
+export default BackdropImage

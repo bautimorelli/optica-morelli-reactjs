@@ -1,19 +1,18 @@
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import InputSpinner from "./InputSpinner";
+import Box from "@mui/material/Box"
+import Button from "@mui/material/Button"
+import InputSpinner from "./InputSpinner"
 const ItemCount = ({ stock, onAdd, count, setCount }) => {
-
 	const updateCount = (number) => {
 		if (count + number > 0 && count + number <= stock) {
 			setCount(count + number)
 		}
-	};
+	}
 
 	const addToCart = () => {
 		if (stock > 0 && count > 0) {
 			onAdd(count)
 		}
-	};
+	}
 
 	return (
 		<Box
@@ -36,7 +35,7 @@ const ItemCount = ({ stock, onAdd, count, setCount }) => {
 				Agregar al Carrito
 			</Button>
 		</Box>
-	);
-};
+	)
+}
 
-export default ItemCount;
+export default ItemCount

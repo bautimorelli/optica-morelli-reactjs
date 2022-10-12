@@ -1,33 +1,33 @@
-import MenuIcon from "@mui/icons-material/Menu";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Container from "@mui/material/Container";
-import IconButton from "@mui/material/IconButton";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import { React, useState } from "react";
-import { NavLink } from "react-router-dom";
-import CartWidget from "./CartWidget";
+import MenuIcon from "@mui/icons-material/Menu"
+import AppBar from "@mui/material/AppBar"
+import Box from "@mui/material/Box"
+import Button from "@mui/material/Button"
+import Container from "@mui/material/Container"
+import IconButton from "@mui/material/IconButton"
+import Menu from "@mui/material/Menu"
+import MenuItem from "@mui/material/MenuItem"
+import Toolbar from "@mui/material/Toolbar"
+import Typography from "@mui/material/Typography"
+import { React, useState } from "react"
+import { NavLink } from "react-router-dom"
+import CartWidget from "./CartWidget"
 
 const pages = [
 	{ link: "/category/lentesDeSol", name: "Lentes De Sol" },
 	{ link: "/category/lentesRecetados", name: "Lentes Recetados" },
 	{ link: "/category/contactologia", name: "Contactologia" },
-];
+]
 
 const ResponsiveAppBar = () => {
-	const [anchorElNav, setAnchorElNav] = useState(null);
+	const [anchorElNav, setAnchorElNav] = useState(null)
 
 	const handleOpenNavMenu = (event) => {
-		setAnchorElNav(event.currentTarget);
-	};
+		setAnchorElNav(event.currentTarget)
+	}
 
 	const handleCloseNavMenu = () => {
-		setAnchorElNav(null);
-	};
+		setAnchorElNav(null)
+	}
 
 	return (
 		<AppBar position="static">
@@ -106,8 +106,7 @@ const ResponsiveAppBar = () => {
 					<Box
 						sx={{
 							display: { xs: "flex", md: "none" },
-						}}
-					>
+						}}>
 						<NavLink
 							to="/"
 							style={{ textDecoration: "none" }}>
@@ -153,6 +152,6 @@ const ResponsiveAppBar = () => {
 				</Toolbar>
 			</Container>
 		</AppBar>
-	);
-};
-export default ResponsiveAppBar;
+	)
+}
+export default ResponsiveAppBar

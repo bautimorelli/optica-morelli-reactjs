@@ -1,9 +1,9 @@
-import React from "react";
-import Button from "@mui/material/Button";
-import { useNavigate } from "react-router-dom";
+import React from "react"
+import Button from "@mui/material/Button"
+import { useNavigate } from "react-router-dom"
 
 const FinishedCartButton = () => {
-	const navigate = useNavigate();
+	const navigate = useNavigate()
 
 	return (
 		<>
@@ -14,7 +14,7 @@ const FinishedCartButton = () => {
 				Terminar Compra
 			</Button>
 		</>
-	);
-};
+	)
+}
 
-export default FinishedCartButton;
+export default FinishedCartButton

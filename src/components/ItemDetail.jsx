@@ -1,25 +1,25 @@
-import React, { useState } from "react";
-import { Box } from "@mui/material";
-import Typography from "@mui/material/Typography";
-import ItemCount from "./ItemCount";
-import Button from "@mui/material/Button";
-import ButtonGroup from "@mui/material/ButtonGroup";
-import { useNavigate } from "react-router-dom";
-import { useCart } from "../context/CartContext";
-import BackdropImage from "./BackdropImage";
-import { useTheme } from "@mui/material/styles";
-import Toast from "./Toast";
+import React, { useState } from "react"
+import { Box } from "@mui/material"
+import Typography from "@mui/material/Typography"
+import ItemCount from "./ItemCount"
+import Button from "@mui/material/Button"
+import ButtonGroup from "@mui/material/ButtonGroup"
+import { useNavigate } from "react-router-dom"
+import { useCart } from "../context/CartContext"
+import BackdropImage from "./BackdropImage"
+import { useTheme } from "@mui/material/styles"
+import Toast from "./Toast"
 
 const ItemDetail = ({ item }) => {
-	const { id, name, brand, price, stock, pictureURL } = item;
-	const [count, setCount] = useState(1);
-	const [compra, setCompra] = useState(false);
-	const [overflow, setOverflow] = useState(false);
-	const [open, setOpen] = useState(false);
+	const { id, name, brand, price, stock, pictureURL } = item
+	const [count, setCount] = useState(1)
+	const [compra, setCompra] = useState(false)
+	const [overflow, setOverflow] = useState(false)
+	const [open, setOpen] = useState(false)
 
-	const navigate = useNavigate();
-	const { addItem, stockOverflow } = useCart();
-	const theme = useTheme();
+	const navigate = useNavigate()
+	const { addItem, stockOverflow } = useCart()
+	const theme = useTheme()
 
 	const onAdd = () => {
 		if (!stockOverflow(id, count)) {
@@ -30,14 +30,18 @@ const ItemDetail = ({ item }) => {
 				stock,
 				pictureURL,
 				quantity: 0,
-			};
-			addItem(product, count);
+			}
+			addItem(product, count)
 		} else {
-			setOverflow(true);
+			setOverflow(true)
 		}
-		setCompra(true);
-		setOpen(true);
-	};
+		setCompra(true)
+		setOpen(true)
+	}
+
+	const showToast = (visible) => {
+		setOpen(visible)
+	}
 
 	return (
 		<Box
@@ -93,7 +97,8 @@ const ItemDetail = ({ item }) => {
 				{stock === 0 ? (
 					<Box>
 						<Typography marginBottom={2}>
-							Lo sentimos! Este producto no cuenta con sock por el momento
+							Lo sentimos! Este producto no cuenta con sock por el
+							momento
 						</Typography>
 						<Button
 							variant="contained"
@@ -109,7 +114,7 @@ const ItemDetail = ({ item }) => {
 								onAdd={onAdd}
 								count={count}
 								setCount={(value) => {
-									setCount(value);
+									setCount(value)
 								}}
 							/>
 						) : (
@@ -132,7 +137,7 @@ const ItemDetail = ({ item }) => {
 										time={2000}
 										type={"success"}
 										open={open}
-										setOpen={setOpen}
+										setOpen={showToast}
 									/>
 								) : (
 									<Toast
@@ -142,7 +147,7 @@ const ItemDetail = ({ item }) => {
 										time={2000}
 										type={"warning"}
 										open={open}
-										setOpen={setOpen}
+										setOpen={showToast}
 									/>
 								)}
 							</>
@@ -151,7 +156,7 @@ const ItemDetail = ({ item }) => {
 				)}
 			</Box>
 		</Box>
-	);
-};
+	)
+}
 
-export default ItemDetail;
+export default ItemDetail

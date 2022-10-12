@@ -1,9 +1,9 @@
-import React from "react";
-import { Typography, Box, Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import React from "react"
+import { Typography, Box, Button } from "@mui/material"
+import { useNavigate } from "react-router-dom"
 
 const EmptyCart = () => {
-    const navigate = useNavigate();
+	const navigate = useNavigate()
 
 	return (
 		<Box
@@ -26,7 +26,7 @@ const EmptyCart = () => {
 				Ir a la tienda
 			</Button>
 		</Box>
-	);
-};
+	)
+}
 
-export default EmptyCart;
+export default EmptyCart

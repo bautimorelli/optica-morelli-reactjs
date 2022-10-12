@@ -1,14 +1,14 @@
-import { Box, Divider, IconButton, Typography } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
-import React from "react";
-import { useCart } from "../context/CartContext";
-import InputSpinner from "./InputSpinner";
-import { useTheme } from "@mui/material/styles";
+import { Box, Divider, IconButton, Typography } from "@mui/material"
+import DeleteIcon from "@mui/icons-material/Delete"
+import React from "react"
+import { useCart } from "../context/CartContext"
+import InputSpinner from "./InputSpinner"
+import { useTheme } from "@mui/material/styles"
 
 const CartItem = ({ product, setToast }) => {
-	const { pictureURL, name, price, id, quantity } = product;
-	const { removeItem, updateQuantity } = useCart();
-	const theme = useTheme();
+	const { pictureURL, name, price, id, quantity } = product
+	const { removeItem, updateQuantity } = useCart()
+	const theme = useTheme()
 
 	return (
 		<Box>
@@ -57,7 +57,7 @@ const CartItem = ({ product, setToast }) => {
 						justifyContent: "flex-end",
 						alignItems: "center",
 						mx: 1,
-						marginY: 3
+						marginY: 3,
 					}}>
 					<Typography
 						variant="h6"
@@ -89,7 +89,7 @@ const CartItem = ({ product, setToast }) => {
 			</Box>
 			<Divider variant="middle" />
 		</Box>
-	);
-};
+	)
+}
 
-export default CartItem;
+export default CartItem
