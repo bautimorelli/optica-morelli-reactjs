@@ -9,7 +9,7 @@ Bienvenidos! 👋 Este es mi proyecto para el curso de React JS de Coderhouse.
 A lo largo del curso fuimos aprendiendo las herramientas necesarias de React para poder desarrollar una spa (single page application) de una temática a nuestra selección. En mi caso, decidí hacer una sobre un negocio de Optica de mi familia, en el cual estoy familiarizado con los diferentes productos que se ofrecen y tengo acceso a sus logos y branding.
 ## Demo
 
-Para ver mi proyecto en funcionamiento se puede visitar [esta pagina](optica-morelli-reactjs.web.app)
+Para ver mi proyecto en funcionamiento se puede visitar [esta pagina](httpd://optica-morelli-reactjs.web.app)
 
 ![Demo](https://github.com/bautimorelli/optica-morelli-reactjs/blob/main/public/images/demo.gif)
 ## Caracteristicas
