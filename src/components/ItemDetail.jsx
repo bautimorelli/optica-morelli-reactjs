@@ -15,7 +15,7 @@ const ItemDetail = ({ item }) => {
 	const [count, setCount] = useState(1);
 	const [compra, setCompra] = useState(false);
 	const [overflow, setOverflow] = useState(false);
-	const [open, setOpen] = useState(false)
+	const [open, setOpen] = useState(false);
 
 	const navigate = useNavigate();
 	const { addItem, stockOverflow } = useCart();
@@ -31,12 +31,12 @@ const ItemDetail = ({ item }) => {
 				pictureURL,
 				quantity: 0,
 			};
-			addItem(product, count)
+			addItem(product, count);
 		} else {
-			setOverflow(true)
+			setOverflow(true);
 		}
-		setCompra(true)
-		setOpen(true)
+		setCompra(true);
+		setOpen(true);
 	};
 
 	return (
@@ -90,43 +90,62 @@ const ItemDetail = ({ item }) => {
 					sx={{ mb: 2 }}>
 					Stock Disponible: {stock}
 				</Typography>
-				{!compra ? (
-					<ItemCount
-						stock={stock}
-						onAdd={onAdd}
-						count={count}
-						setCount={(value) => {
-							setCount(value);
-						}}
-					/>
+				{stock === 0 ? (
+					<Box>
+						<Typography marginBottom={2}>
+							Lo sentimos! Este producto no cuenta con sock por el momento
+						</Typography>
+						<Button
+							variant="contained"
+							onClick={() => navigate("/")}>
+							Seguir Comprando
+						</Button>
+					</Box>
 				) : (
 					<>
-						<ButtonGroup>
-							<Button
-								variant="contained"
-								onClick={() => navigate("/cart")}>
-								Ir al carrito
-							</Button>
-							<Button onClick={() => navigate("/")}>
-								Seguir Comprando
-							</Button>
-						</ButtonGroup>
-						{!overflow ? (
-							<Toast
-								text={"Agregado al carrito correctamente"}
-								time={2000}
-								type={"success"}
-								open={open}
-								setOpen={setOpen}
+						{!compra ? (
+							<ItemCount
+								stock={stock}
+								onAdd={onAdd}
+								count={count}
+								setCount={(value) => {
+									setCount(value);
+								}}
 							/>
 						) : (
-							<Toast
-								text={"La cantidad agregada supera nuestro stock"}
-								time={2000}
-								type={"warning"}
-								open={open}
-								setOpen={setOpen}
-							/>
+							<>
+								<ButtonGroup>
+									<Button
+										variant="contained"
+										onClick={() => navigate("/cart")}>
+										Ir al carrito
+									</Button>
+									<Button onClick={() => navigate("/")}>
+										Seguir Comprando
+									</Button>
+								</ButtonGroup>
+								{!overflow ? (
+									<Toast
+										text={
+											"Agregado al carrito correctamente"
+										}
+										time={2000}
+										type={"success"}
+										open={open}
+										setOpen={setOpen}
+									/>
+								) : (
+									<Toast
+										text={
+											"La cantidad agregada supera nuestro stock"
+										}
+										time={2000}
+										type={"warning"}
+										open={open}
+										setOpen={setOpen}
+									/>
+								)}
+							</>
 						)}
 					</>
 				)}

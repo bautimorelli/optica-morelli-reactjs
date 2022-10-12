@@ -18,9 +18,9 @@ const ItemListContainer = () => {
 		setLoading(true);
 		const products = categoryId
 			? query(
-					collection(database, "products"),
-					where("category", "==", categoryId)
-			  )
+				collection(database, "products"),
+				where("category", "==", categoryId)
+			)
 			: collection(database, "products");
 		getDocs(products)
 			.then((result) => {
