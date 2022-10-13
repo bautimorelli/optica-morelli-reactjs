@@ -55,7 +55,7 @@ const Item = ({ item }) => {
 					<Button
 						size="small"
 						variant="text"
-						onClick={() => navigate(`item/${id}`)}>
+						onClick={() => navigate(`/item/${id}`)}>
 						Ver producto
 					</Button>
 				</CardActions>
